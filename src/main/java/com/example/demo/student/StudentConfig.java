@@ -16,14 +16,12 @@ public class StudentConfig {
         return args -> {
             var mariam = new Student(
                 "Maria",
-                21,
                 LocalDate.of(2000, Month.JANUARY, 5),
                 "mariam.jamal@gmail.com"
             );
 
             var alex = new Student(
                 "Alex",
-                21,
                 LocalDate.of(2000, Month.JANUARY, 5),
                 "alex@gmail.com"
             );
