@@ -3,6 +3,7 @@ package com.example.demo.student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
@@ -39,6 +40,23 @@ public class StudentService {
             throw new IllegalStateException(("email taken"));
         }
 
+        studentRepository.save(student);
+    }
+
+    public void deleteStudent(Long studentId) {
+        boolean exists = studentRepository.existsById(studentId);
+        if (!exists) {
+            throw new IllegalStateException("student with id " + studentId + " does not exist");
+        }
+        studentRepository.deleteById(studentId);
+    }
+
+    @Transactional
+    public void updateStudent(Student student) {
+        boolean exists = studentRepository.existsById(student.getId());
+        if ( !exists ) {
+            throw new IllegalStateException("student with id " + student.getId() + " does not exist");
+        }
         studentRepository.save(student);
     }
 }
